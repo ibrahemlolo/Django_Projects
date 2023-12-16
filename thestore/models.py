@@ -26,11 +26,21 @@ class proudact(models.Model):
 
 
 class customer(models.Model):
+    Membership_B = "B"
+    Membership_S = "S"
+    Membership_G = "G"
+
+    Membership_statu = [
+        (Membership_B, "Bronze"),
+        (Membership_S, "Silver"),
+        (Membership_G, "Gold"),
+    ]
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=255)
-    birth_data = models.DateField(null=True)
+    birth_date = models.DateField(null=True)
+    membership=models.CharField(max_length=1,choices=Membership_statu,default=Membership_B)
 
     class Meta:
         db_table = 'store_customer'
